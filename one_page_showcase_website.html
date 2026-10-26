@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature & Wildlife Exploration | Single Page Showcase</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth video responsive aspect ratio container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
+
+    <!-- HEADER & NAVIGATION (Requirement: <nav> with HTML bookmarks) -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Website Logo / Title -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/30">
+                        <i class="fa-solid font-bold fa-leaf"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">TerraVista</span>
+                </div>
+
+                <!-- Desktop Navigation Bar -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="#home" class="px-3 py-2 rounded-lg text-sm font-medium hover:text-brand-600 dark:hover:text-brand-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Home</a>
+                    <a href="#gallery" class="px-3 py-2 rounded-lg text-sm font-medium hover:text-brand-600 dark:hover:text-brand-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Gallery</a>
+                    <a href="#videos" class="px-3 py-2 rounded-lg text-sm font-medium hover:text-brand-600 dark:hover:text-brand-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Documentaries</a>
+                    <a href="#contact" class="px-3 py-2 rounded-lg text-sm font-medium hover:text-brand-600 dark:hover:text-brand-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Actions Right Side -->
+                <div class="flex items-center space-x-3">
+                    <!-- Theme Toggle Button -->
+                    <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none transition-colors" title="Toggle Light/Dark Theme">
+                        <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Dropdown Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 border-t border-gray-200 dark:border-gray-800">
+                <nav class="flex flex-col space-y-1">
+                    <a href="#home" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-md text-base font-medium hover:bg-brand-50 dark:hover:bg-gray-800 hover:text-brand-600">Home</a>
+                    <a href="#gallery" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-md text-base font-medium hover:bg-brand-50 dark:hover:bg-gray-800 hover:text-brand-600">Gallery</a>
+                    <a href="#videos" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-md text-base font-medium hover:bg-brand-50 dark:hover:bg-gray-800 hover:text-brand-600">Documentaries</a>
+                    <a href="#contact" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-md text-base font-medium hover:bg-brand-50 dark:hover:bg-gray-800 hover:text-brand-600">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. HOME SECTION (Requirement: Home page section with <h1>, <p>, etc.) -->
+        <section id="home" class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden">
+            <!-- Background Accent Visual -->
+            <div class="absolute inset-0 -z-10 opacity-30 dark:opacity-20 pointer-events-none">
+                <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500 rounded-full blur-3xl"></div>
+                <div class="absolute top-1/2 -left-40 w-96 h-96 bg-emerald-400 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Text Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-100 text-brand-900 dark:bg-brand-900/40 dark:text-brand-100 border border-brand-500/20">
+                            <i class="fa-solid fa-compass text-brand-600 dark:text-brand-500"></i>
+                            <span>Explore Earth's Wonders</span>
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight">
+                            Discover the Majestic <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-emerald-400">Untamed Nature</span>
+                        </h1>
+                        
+                        <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Welcome to TerraVista—a visual chronicle celebrating planet Earth's most breathtaking landscapes, vibrant ecosystems, and rare wildlife. Immerse yourself in photography, documentary films, and interactive stories.
+                        </p>
+
+                        <p class="text-base text-gray-500 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                            Our goal is to promote conservation awareness through visual storytelling, bridging human curiosity with ecological preservation worldwide.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                            <a href="#gallery" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-lg shadow-brand-600/30 transition-all text-center flex items-center justify-center space-x-2">
+                                <span>Explore Gallery</span>
+                                <i class="fa-solid fa-arrow-down text-sm"></i>
+                            </a>
+                            <a href="#videos" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-100 font-semibold transition-all text-center flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-circle-play text-brand-600 dark:text-brand-500"></i>
+                                <span>Watch Videos</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Banner Visual -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800 group">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" 
+                                 alt="High mountain lake surrounded by dense evergreen pine trees under cloud-covered mountains" 
+                                 class="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent flex items-end p-6">
+                                <div class="text-white">
+                                    <p class="text-xs uppercase font-bold tracking-widest text-brand-400">Featured Location</p>
+                                    <h3 class="text-xl font-bold">Yosemite Valley, California</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Highlight Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-12 border-t border-gray-200 dark:border-gray-800">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 shadow-sm">
+                        <div class="w-12 h-12 bg-brand-100 dark:bg-brand-900/50 rounded-xl flex items-center justify-center text-brand-600 dark:text-brand-400 text-xl font-bold mb-4">
+                            <i class="fa-solid fa-camera"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">High-Res Visuals</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Curated selection of high-definition photography capturing rare ecological events.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 shadow-sm">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl font-bold mb-4">
+                            <i class="fa-solid fa-film"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Video Documentaries</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Immersive 4K mini-documentaries exploring marine biomes and alpine mountain peaks.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 shadow-sm">
+                        <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/50 rounded-xl flex items-center justify-center text-teal-600 dark:text-teal-400 text-xl font-bold mb-4">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Conservation Direct</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Direct outreach connecting environmental researchers with local habitat restoration campaigns.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. GALLERY / PICTURES SECTION (Requirement: <img> tags, figure, captions) -->
+        <section id="gallery" class="py-16 md:py-24 bg-gray-100/70 dark:bg-gray-800/40 transition-colors">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">Nature Photo Gallery</h2>
+                    <p class="mt-4 text-gray-600 dark:text-gray-300 text-base">A curated showcase highlighting diverse ecosystems, wildlife species, and dramatic earth formations.</p>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Image Card 1 -->
+                    <figure class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md border border-gray-200 dark:border-gray-700 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Vibrant misty forest filled with tall sunlit pine trees" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 cursor-pointer"
+                                 onclick="openLightbox(this.src, 'Misty Alpine Rainforest', 'Pacific Northwest, North America')"
+                                 onerror="this.src='https://placehold.co/800x600/16a34a/FFFFFF?text=Forest+Landscape'">
+                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="bg-white/90 text-gray-900 p-3 rounded-full shadow-lg"><i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <figcaption class="p-5">
+                            <span class="text-xs font-semibold uppercase text-brand-600 dark:text-brand-400">Forest Biome</span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mt-1">Misty Alpine Rainforest</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Dense canopy fog filtering golden morning sunlight across old-growth evergreen timber.</p>
+                        </figcaption>
+                    </figure>
+
+                    <!-- Image Card 2 -->
+                    <figure class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md border border-gray-200 dark:border-gray-700 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Snowcapped rugged mountain peaks under a clear sky during sunset" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 cursor-pointer"
+                                 onclick="openLightbox(this.src, 'Glacial Ridge Heights', 'Swiss Alps, Europe')"
+                                 onerror="this.src='https://placehold.co/800x600/16a34a/FFFFFF?text=Mountain+Peak'">
+                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="bg-white/90 text-gray-900 p-3 rounded-full shadow-lg"><i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <figcaption class="p-5">
+                            <span class="text-xs font-semibold uppercase text-brand-600 dark:text-brand-400">Montane Region</span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mt-1">Glacial Ridge Heights</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Soaring granite summits carved over millennia by glacial movements and harsh weather.</p>
+                        </figcaption>
+                    </figure>
+
+                    <!-- Image Card 3 -->
+                    <figure class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md border border-gray-200 dark:border-gray-700 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Pristine tropical beach with turquoise water and smooth white sand" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 cursor-pointer"
+                                 onclick="openLightbox(this.src, 'Coral Coastal Shores', 'Maldives Archipelago')"
+                                 onerror="this.src='https://placehold.co/800x600/16a34a/FFFFFF?text=Ocean+Coast'">
+                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="bg-white/90 text-gray-900 p-3 rounded-full shadow-lg"><i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <figcaption class="p-5">
+                            <span class="text-xs font-semibold uppercase text-brand-600 dark:text-brand-400">Marine Ecosystem</span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mt-1">Coral Coastal Shores</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Crystal marine lagoons providing essential breeding habitats for diverse aquatic wildlife.</p>
+                        </figcaption>
+                    </figure>
+
+                    <!-- Image Card 4 -->
+                    <figure class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md border border-gray-200 dark:border-gray-700 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Rolling green hills bathed in soft twilight fog" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 cursor-pointer"
+                                 onclick="openLightbox(this.src, 'Emerald Valley Fog', 'Highlands, Scotland')"
+                                 onerror="this.src='https://placehold.co/800x600/16a34a/FFFFFF?text=Valley+Landscape'">
+                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="bg-white/90 text-gray-900 p-3 rounded-full shadow-lg"><i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <figcaption class="p-5">
+                            <span class="text-xs font-semibold uppercase text-brand-600 dark:text-brand-400">Valleys & Plains</span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mt-1">Emerald Valley Fog</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Atmospheric low-altitude clouds draping undulating green hills at dawn break.</p>
+                        </figcaption>
+                    </figure>
+
+                    <!-- Image Card 5 -->
+                    <figure class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md border border-gray-200 dark:border-gray-700 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Stunning starry night sky over mountain silhouette" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 cursor-pointer"
+                                 onclick="openLightbox(this.src, 'Celestial Night Sky', 'Atacama Desert, Chile')"
+                                 onerror="this.src='https://placehold.co/800x600/16a34a/FFFFFF?text=Night+Sky'">
+                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="bg-white/90 text-gray-900 p-3 rounded-full shadow-lg"><i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <figcaption class="p-5">
+                            <span class="text-xs font-semibold uppercase text-brand-600 dark:text-brand-400">Astronomy</span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mt-1">Celestial Night Sky</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Zero light-pollution dark sky preserve showing the brilliant core of the Milky Way galaxy.</p>
+                        </figcaption>
+                    </figure>
+
+                    <!-- Image Card 6 -->
+                    <figure class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md border border-gray-200 dark:border-gray-700 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Majestic male lion resting on golden savanna grass" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 cursor-pointer"
+                                 onclick="openLightbox(this.src, 'Savanna Apex Predator', 'Serengeti, Tanzania')"
+                                 onerror="this.src='https://placehold.co/800x600/16a34a/FFFFFF?text=Wildlife'">
+                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="bg-white/90 text-gray-900 p-3 rounded-full shadow-lg"><i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <figcaption class="p-5">
+                            <span class="text-xs font-semibold uppercase text-brand-600 dark:text-brand-400">Wildlife Sanctuary</span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mt-1">Savanna Apex Predator</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Protected wildlife reserves guarding crucial biodiversity and endangered species.</p>
+                        </figcaption>
+                    </figure>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. VIDEO SECTION (Requirement: <iframe> tags, src attribute, responsive wrapper) -->
+        <section id="videos" class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200">Featured Media</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight mt-2">Video Documentaries</h2>
+                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-base">Watch high-definition nature film footage exploring our planet's delicate natural balance.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    
+                    <!-- Video Embed Card 1 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col">
+                        <div class="video-container bg-black">
+                            <!-- Responsive <iframe> embed using official YouTube embed -->
+                            <iframe 
+                                src="https://www.youtube-nocookie.com/embed/1La4QzGeaaQ?rel=0" 
+                                title="Our Planet Earth Nature Documentary" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center space-x-2 text-xs font-semibold text-brand-600 dark:text-brand-400 mb-1">
+                                    <i class="fa-solid fa-play-circle"></i>
+                                    <span>Nature Film Series</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Wonders of Planet Earth</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm mt-2 leading-relaxed">
+                                    Take an inspiring journey through magnificent global landscapes, remote wilderness preserves, and thriving natural habitats.
+                                </p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700/60 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                                <span><i class="fa-regular fa-clock mr-1"></i> Full Feature</span>
+                                <span><i class="fa-solid fa-film mr-1"></i> 1080p Ultra HD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Embed Card 2 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col">
+                        <div class="video-container bg-black">
+                            <!-- Responsive <iframe> embed -->
+                            <iframe 
+                                src="https://www.youtube-nocookie.com/embed/6v2L2UGZJAM?rel=0" 
+                                title="Scenic Wilderness Atmosphere Video" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center space-x-2 text-xs font-semibold text-brand-600 dark:text-brand-400 mb-1">
+                                    <i class="fa-solid fa-play-circle"></i>
+                                    <span>Ambient Exploration</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Wilderness Sanctuaries & Soundscapes</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm mt-2 leading-relaxed">
+                                    Experience ambient relaxing drone footage across untouched national forests, rushing mountain rivers, and cascading waterfalls.
+                                </p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700/60 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                                <span><i class="fa-regular fa-clock mr-1"></i> Cinematic Cut</span>
+                                <span><i class="fa-solid fa-film mr-1"></i> 4K UHD Available</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. CONTACT FORM SECTION (Requirement: <form>, <input>, controls, submit button) -->
+        <section id="contact" class="py-16 md:py-24 bg-gray-100/70 dark:bg-gray-800/40 transition-colors">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">Get in Touch</h2>
+                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-base">Have questions, feedback, or media collaboration inquiries? Send us a message using the form below.</p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border border-gray-200 dark:border-gray-700 p-6 sm:p-10">
+                    
+                    <!-- Alert Notification Box for Form Submission -->
+                    <div id="formAlert" class="hidden mb-6 p-4 rounded-xl bg-brand-100 border border-brand-500 text-brand-900 dark:bg-brand-900/50 dark:text-brand-100 text-sm flex items-center space-x-3">
+                        <i class="fa-solid fa-circle-check text-brand-600 dark:text-brand-400 text-xl"></i>
+                        <div>
+                            <p class="font-bold">Thank you for your message!</p>
+                            <p class="text-xs mt-0.5">We have received your input and will reply to your email address shortly.</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact <form> Tag -->
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Full Name Input -->
+                            <div>
+                                <label for="userName" class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                                    Full Name <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                        <i class="fa-solid fa-user text-sm"></i>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        id="userName" 
+                                        name="userName" 
+                                        required 
+                                        placeholder="Jane Doe"
+                                        class="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-gray-900 dark:text-white transition-all text-sm"
+                                    >
+                                </div>
+                            </div>
+
+                            <!-- Email Address Input -->
+                            <div>
+                                <label for="userEmail" class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                                    Email Address <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                        <i class="fa-solid fa-envelope text-sm"></i>
+                                    </div>
+                                    <input 
+                                        type="email" 
+                                        id="userEmail" 
+                                        name="userEmail" 
+                                        required 
+                                        placeholder="jane@example.com"
+                                        class="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-gray-900 dark:text-white transition-all text-sm"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Inquiry Category / Subject -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="inquiryType" class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                                    Topic Category
+                                </label>
+                                <select 
+                                    id="inquiryType" 
+                                    name="inquiryType" 
+                                    class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-gray-900 dark:text-white transition-all text-sm"
+                                >
+                                    <option value="general">General Inquiry</option>
+                                    <option value="photography">Photo Licensing</option>
+                                    <option value="collaboration">Conservation Partnership</option>
+                                    <option value="feedback">Website Feedback</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="subject" class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                                    Subject Line <span class="text-red-500">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="subject" 
+                                    name="subject" 
+                                    required 
+                                    placeholder="Brief subject description"
+                                    class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-gray-900 dark:text-white transition-all text-sm"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Message Textarea -->
+                        <div>
+                            <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                                Your Message <span class="text-red-500">*</span>
+                            </label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                rows="5" 
+                                required 
+                                placeholder="Type your message or project inquiry here..."
+                                class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-gray-900 dark:text-white transition-all text-sm resize-y"
+                            ></textarea>
+                        </div>
+
+                        <!-- Checkbox Interaction -->
+                        <div class="flex items-center space-x-3">
+                            <input 
+                                type="checkbox" 
+                                id="newsletter" 
+                                name="newsletter" 
+                                class="w-4 h-4 text-brand-600 focus:ring-brand-500 border-gray-300 rounded"
+                            >
+                            <label for="newsletter" class="text-xs text-gray-600 dark:text-gray-300">
+                                Subscribe to monthly nature photography digests and conservation updates.
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-2">
+                            <button 
+                                type="submit" 
+                                class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-lg shadow-brand-600/30 transition-all focus:ring-4 focus:ring-brand-500/50 flex items-center justify-center space-x-2 cursor-pointer"
+                            >
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Send Message</span>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 5. FOOTER (Requirement: <footer> tag, copyright, back to top link) -->
+    <footer class="bg-gray-900 text-gray-300 border-t border-gray-800 py-12 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-gray-800">
+                
+                <!-- Brand Info -->
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">TerraVista</span>
+                    </div>
+                    <p class="text-sm text-gray-400 max-w-sm leading-relaxed">
+                        A modern single-page website project dedicated to celebrating biodiversity, natural ecosystems, and wildlife conservation.
+                    </p>
+                </div>
+
+                <!-- Navigation Quick Bookmarks -->
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider text-white mb-4">Quick Navigation</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="hover:text-brand-400 transition-colors">Home Section</a></li>
+                        <li><a href="#gallery" class="hover:text-brand-400 transition-colors">Photo Gallery</a></li>
+                        <li><a href="#videos" class="hover:text-brand-400 transition-colors">Documentaries</a></li>
+                        <li><a href="#contact" class="hover:text-brand-400 transition-colors">Contact Form</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Links & Back to top -->
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider text-white mb-4">Connect With Us</h4>
+                    <div class="flex space-x-3 mb-6">
+                        <a href="#" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors" title="Twitter"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors" title="Instagram"><i class="fa-brands fa-instagram text-sm"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors" title="YouTube"><i class="fa-brands fa-youtube text-sm"></i></a>
+                    </div>
+                    <!-- Back to Top HTML Bookmark Button -->
+                    <a href="#home" class="inline-flex items-center space-x-2 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+                        <span>Back to top</span>
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Copyright Line -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
+                <p>&copy; <span id="currentYear"></span> TerraVista Showcase Project. All rights reserved.</p>
+                <p class="mt-2 sm:mt-0">Built as a single-page HTML5 showcase website.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX MODAL FOR GALLERY IMAGES -->
+    <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-5 right-5 text-white text-3xl hover:text-gray-300 focus:outline-none p-2" title="Close modal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-4xl w-full max-h-[90vh] flex flex-col items-center">
+            <img id="lightboxImg" src="" alt="Enlarged gallery view" class="max-h-[75vh] w-auto object-contain rounded-xl shadow-2xl">
+            <div class="text-center mt-4 text-white">
+                <h4 id="lightboxTitle" class="text-xl font-bold"></h4>
+                <p id="lightboxSub" class="text-sm text-gray-400 mt-1"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Set dynamic year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Dark/Light Theme Switcher Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load theme preferences
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            const icon = document.getElementById('themeIcon');
+            if(icon) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // Gallery Lightbox Modal logic
+        function openLightbox(src, title, location) {
+            const lightbox = document.getElementById('lightbox');
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxTitle').textContent = title;
+            document.getElementById('lightboxSub').textContent = location;
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // prevent scrolling
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // restore scrolling
+        }
+
+        // Close lightbox when clicking outside image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Interactive Contact Form Handling
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const alertBox = document.getElementById('formAlert');
+            const form = document.getElementById('contactForm');
+
+            // Show custom alert message
+            alertBox.classList.remove('hidden');
+            
+            // Reset form fields
+            form.reset();
+
+            // Auto dismiss alert after 5 seconds
+            setTimeout(() => {
+                alertBox.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
